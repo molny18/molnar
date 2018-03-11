@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Musicfile</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Author</th>
+                <td>{{ musicFile.author }}</td>
+            </tr>
+            <tr>
+                <th>Cover</th>
+                <td>{{ musicFile.cover }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ musicFile.id }}</td>
+            </tr>
+            <tr>
+                <th>Original_name</th>
+                <td>{{ musicFile.originalname }}</td>
+            </tr>
+            <tr>
+                <th>Path</th>
+                <td>{{ musicFile.path }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ musicFile.title }}</td>
+            </tr>
+            <tr>
+                <th>Size</th>
+                <td>{{ musicFile.size }}</td>
+            </tr>
+            <tr>
+                <th>Mimetype</th>
+                <td>{{ musicFile.mimeType }}</td>
+            </tr>
+            <tr>
+                <th>Length</th>
+                <td>{{ musicFile.length }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('music_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('music_edit', { 'id': musicFile.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

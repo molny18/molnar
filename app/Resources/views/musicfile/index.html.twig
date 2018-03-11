@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Musicfiles list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Author</th>
+                <th>Cover</th>
+                <th>Id</th>
+                <th>Original_name</th>
+                <th>Path</th>
+                <th>Title</th>
+                <th>Size</th>
+                <th>Mimetype</th>
+                <th>Length</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for musicFile in musicFiles %}
+            <tr>
+                <td><a href="{{ path('music_show', { 'id': musicFile.id }) }}">{{ musicFile.author }}</a></td>
+                <td>{{ musicFile.cover }}</td>
+                <td>{{ musicFile.id }}</td>
+                <td>{{ musicFile.originalname }}</td>
+                <td>{{ musicFile.path }}</td>
+                <td>{{ musicFile.title }}</td>
+                <td>{{ musicFile.size }}</td>
+                <td>{{ musicFile.mimeType }}</td>
+                <td>{{ musicFile.length }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('music_show', { 'id': musicFile.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('music_edit', { 'id': musicFile.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('music_new') }}">Create a new musicFile</a>
+        </li>
+    </ul>
+{% endblock %}
