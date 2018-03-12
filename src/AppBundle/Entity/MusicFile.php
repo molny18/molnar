@@ -31,12 +31,43 @@ class MusicFile extends AbstractFile
     protected $author;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      *
-     * @var string
+     * @var string|null
      */
     protected $cover;
 
+    /**
+     * @return string
+     */
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param string $author
+     */
+    public function setAuthor(string $author)
+    {
+        $this->author = $author;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCover(): ?string
+    {
+        return $this->cover;
+    }
+
+    /**
+     * @param null|string $cover
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+    }
 
 
 }

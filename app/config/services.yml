@@ -8,12 +8,12 @@ services:
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services
-        autowire: true
+        autowire: false
         # automatically registers your services as commands, event subscribers, etc.
         autoconfigure: true
         # this means you cannot fetch services directly from the container via $container->get()
         # if you need to do this, you can override this setting on individual services
-        public: false
+        public: true
 
     # makes classes in src/AppBundle available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -53,3 +53,26 @@ services:
         arguments:
             - '@Doctrine\Common\Persistence\ObjectManager'
             - 'AppBundle\Entity\MusicFile'
+        public: true
+
+    app.music.parser:
+        class: AppBundle\Service\MusicParser
+        calls:
+            - [setManager,['@app.music.manager']]
+            - [setDir,['app/media/music']]
+            - [setCommandHelper,['@app.command.helper']]
+        public: true
+
+    app.music_refresh.handler:
+        class: AppBundle\Service\Handler\MusicRefreshHandler
+        calls:
+            - [setParser,['@app.music.parser']]
+
+    app.command.helper:
+        class: AppBundle\Service\Helper\Mp3TagHelper
+        calls:
+            - [setOriginalDir,['/home/molnar.mate/sample']]
+
+app:
+    music_parser:
+        music_directory: '/app/media/music'

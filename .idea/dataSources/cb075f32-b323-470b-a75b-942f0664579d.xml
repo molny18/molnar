@@ -81,39 +81,28 @@
     <column id="26" parent="12" name="cover">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
     </column>
-    <column id="27" parent="12" name="original_name">
+    <column id="27" parent="12" name="path">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="28" parent="12" name="path">
+    <column id="28" parent="12" name="title">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="29" parent="12" name="title">
+    <column id="29" parent="12" name="size">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="30" parent="12" name="size">
+    <column id="30" parent="12" name="duration">
       <Position>7</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="31" parent="12" name="mime_type">
-      <Position>8</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="32" parent="12" name="length">
-      <Position>9</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="33" parent="12" name="PRIMARY">
+    <key id="31" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

@@ -23,7 +23,6 @@ use Doctrine\ORM\Mapping as ORM;
 abstract class  AbstractFile
 {
 
-
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -32,13 +31,6 @@ abstract class  AbstractFile
      * @var int
      */
     protected $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     *
-     * @var string
-     */
-    protected $original_name;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -63,34 +55,12 @@ abstract class  AbstractFile
     protected  $size;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     *
-     * @var string
-     */
-    protected  $mimeType;
-
-    /**
      * @ORM\Column(type="integer")
      *
      * @var int
      */
-    protected $length;
+    protected $duration;
 
-    /**
-     * @return string
-     */
-    public function getOriginalName(): string
-    {
-        return $this->original_name;
-    }
-
-    /**
-     * @param string $original_name
-     */
-    public function setOriginalName(string $original_name)
-    {
-        $this->original_name = $original_name;
-    }
 
     /**
      * @return string
@@ -127,22 +97,6 @@ abstract class  AbstractFile
     /**
      * @return string
      */
-    public function getMimeType(): string
-    {
-        return $this->mimeType;
-    }
-
-    /**
-     * @param string $mimeType
-     */
-    public function setMimeType(string $mimeType)
-    {
-        $this->mimeType = $mimeType;
-    }
-
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
@@ -154,5 +108,29 @@ abstract class  AbstractFile
     public function setTitle(string $title)
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDuration(): int
+    {
+        return $this->duration;
+    }
+
+    /**
+     * @param int $duration
+     */
+    public function setDuration(int $duration)
+    {
+        $this->duration = $duration;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
     }
 }

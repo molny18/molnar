@@ -1,0 +1,21 @@
+#app:
+#    music_parser:
+#        music_directory: '/app/media/music'
+#
+#services:
+#    app.music.manager:
+#        class: AppBundle\Manager\MusicManager
+#        arguments:
+#            - '@Doctrine\Common\Persistence\ObjectManager'
+#            - 'AppBundle\Entity\MusicFile'
+#        public: true
+#
+#    app.music.parser:
+#        class: AppBundle\Service\MusicParser
+#        calls:
+#            - [setManager,['@app.music.manager']]
+#
+#    app.music_refresh.handler:
+#        class: AppBundle\Service\Handler\MusicRefreshHandler
+#        calls:
+#            - [setParser,['@app.music.parser']]

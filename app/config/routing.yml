@@ -20,11 +20,12 @@ registration:
 
 music:
     path: /music
-    defaults: {_controller: AppBundle:Music:index}
+    defaults: {_controller: AppBundle:MusicFile:index}
 
-music_controll:
-    path: /mc
-    defaults: {_controller: AppBundle:Music:handleAjaxControll }
+
+music_refresh:
+    path: /m_refresh
+    defaults: {_controller: AppBundle:MusicFile:refresh }
 
 media:
     path: /media

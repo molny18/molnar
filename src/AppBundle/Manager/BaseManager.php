@@ -1,6 +1,4 @@
 <?php
-use Doctrine\Common\Persistence\ObjectManager;
-
 /**
  * Created by PhpStorm.
  * User: molnar.mate
@@ -10,6 +8,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 namespace AppBundle\Manager;
 
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
+
 abstract class BaseManager
 {
     protected $class;
@@ -17,6 +18,12 @@ abstract class BaseManager
     protected $orm;
 
     protected $repo;
+
+//    public function __construct(Connection $conn, Configuration $config, EventManager $eventManager)
+//    {
+//        parent::__construct($conn, $config, $eventManager);
+//
+//    }
 
     public function __construct(ObjectManager $orm,string $class)
     {
@@ -51,5 +58,41 @@ abstract class BaseManager
     public function getClass(): string
     {
         return $this->class;
+    }
+
+    /**
+     * @return \Doctrine\Common\Persistence\ObjectRepository
+     */
+    public function getRepo(): \Doctrine\Common\Persistence\ObjectRepository
+    {
+        return $this->repo;
+    }
+
+    /**
+     * @param \Doctrine\Common\Persistence\ObjectRepository $repo
+     */
+    public function setRepo(\Doctrine\Common\Persistence\ObjectRepository $repo)
+    {
+        $this->repo = $repo;
+    }
+
+    public function findAll(): array
+    {
+        return $this->repo->findAll();
+    }
+
+    public function find($id)
+    {
+        return $this->repo->find($id);
+    }
+
+    public function findAllBy(array $criteria): array
+    {
+        return $this->repo->findBy($criteria);
+    }
+
+    public function findBy(array $criteria)
+    {
+        return $this->repo->findOneBy($criteria);
     }
 }

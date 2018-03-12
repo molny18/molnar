@@ -3,9 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\MusicFile;
+use AppBundle\Manager\BaseManager;
+use AppBundle\Service\Handler\MusicRefreshHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\BrowserKit\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Musicfile controller.
@@ -22,13 +26,31 @@ class MusicFileController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $manager = $this->getManager();
+//        $refresher=$this->getMusicRefreshHandler();
+//        $dir= $refresher->handleRefresh();
 
-        $musicFiles = $em->getRepository('AppBundle:MusicFile')->findAll();
+        $musicFiles = $manager->findAll();
 
         return $this->render('musicfile/index.html.twig', array(
             'musicFiles' => $musicFiles,
         ));
+    }
+
+    public function refreshAction(Request $request) :Response
+    {
+
+    }
+
+
+    private function getManager(): BaseManager
+    {
+        return $this->container->get('app.music.manager');
+    }
+
+    private function getMusicRefreshHandler(): MusicRefreshHandler
+    {
+        return $this->container->get('app.music_refresh.handler');
     }
 
     /**
